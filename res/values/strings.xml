@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Brightness Switcher</string>
+	<string name="widgetTitle">Brightness</string>
+	<string name="addLevel">Add level</string>
+	<string name="auto">Auto</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="ok">OK</string>
+	<string name="cancel">Cancel</string>
+	<string name="configurationTitle">Levels</string>
+	<string name="deleteLevelConfirmationMessage">Delete this level?</string>
+	<string name="minimumLevelsMessage">You must have at least two levels to switch!</string>
+	<string name="cellIndexFormat" formatted="false">Level %d</string>
+	<string name="textLevelFormat" formatted="false">Current level: %s</string>
+	<string name="percentLevelFormat" formatted="false">%d%%</string>
+
+</resources>

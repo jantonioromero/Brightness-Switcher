@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Conmutador de brillo</string>
+	<string name="widgetTitle">Brillo</string>
+	<string name="addLevel">Añadir nivel</string>
+	<string name="auto">Auto</string>
+	<string name="yes">Sí</string>
+	<string name="no">No</string>
+	<string name="ok">OK</string>
+	<string name="cancel">Cancelar</string>
+	<string name="configurationTitle">Niveles</string>
+	<string name="deleteLevelConfirmationMessage">¿Borrar este nivel?</string>
+	<string name="minimumLevelsMessage">¡Debes tener al menos dos niveles para poder cambiar entre ellos!</string>
+	<string name="cellIndexFormat" formatted="false">Nivel %d</string>
+	<string name="textLevelFormat" formatted="false">Nivel actual: %s</string>
+	<string name="percentLevelFormat" formatted="false">%d%%</string>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Widget size (API < 14) =  (N * 74) - 2 -->
+<!-- Widget size (API >= 14) =  (N * 70) - 30 -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+	android:initialLayout="@layout/widget_layout"
+	android:minHeight="@dimen/widget_height"
+	android:minWidth="@dimen/widget_width"
+	android:resizeMode="none"
+	android:updatePeriodMillis="0"
+	android:widgetCategory="home_screen" >
+
+</appwidget-provider>
