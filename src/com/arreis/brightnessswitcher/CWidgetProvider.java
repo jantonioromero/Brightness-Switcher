@@ -15,13 +15,6 @@ public class CWidgetProvider extends AppWidgetProvider
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
 	{
-//		ComponentName thisWidget = new ComponentName(context, CWidgetProvider.class);
-//		int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-//		for (int widgetId : allWidgetIds)
-//		{
-//			...
-//		}
-		
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 		remoteViews.setOnClickPendingIntent(R.id.widget_button, buildButtonPendingIntent(context));
 		

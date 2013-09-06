@@ -48,7 +48,6 @@ public class CWidgetReceiver extends BroadcastReceiver
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 		remoteViews.setTextViewText(R.id.widget_text, level == CBrightnessFileManager.BRIGHTNESS_LEVEL_AUTO ? context.getString(R.string.auto) : String.format(context.getString(R.string.percentLevelFormat), (int) (100 * level)));
 		
-		//REMEMBER TO ALWAYS REFRESH YOUR BUTTON CLICK LISTENERS!!!
 		remoteViews.setOnClickPendingIntent(R.id.widget_button, CWidgetProvider.buildButtonPendingIntent(context));
 		CWidgetProvider.pushWidgetUpdate(context.getApplicationContext(), remoteViews);
 	}
