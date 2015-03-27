@@ -10,6 +10,7 @@
 	<string name="ok">OK</string>
 	<string name="cancel">Cancelar</string>
 	<string name="configurationTitle">Niveles</string>
+	<string name="showTitleInWidget">Mostrar título en el widget</string>
 	<string name="deleteLevelConfirmationMessage">¿Borrar este nivel?</string>
 	<string name="minimumLevelsMessage">¡Debes tener al menos dos niveles para poder cambiar entre ellos!</string>
 	<string name="cellIndexFormat" formatted="false">Nivel %d</string>
