@@ -8,5 +8,7 @@
 	<dimen name="widget_width">72dp</dimen>
 	<dimen name="widget_height">72dp</dimen>
 	<dimen name="widget_padding">6dp</dimen>
+	<dimen name="widget_textSize">18dp</dimen>
+	<dimen name="widget_textSize_withTitle">14dp</dimen>
 
 </resources>

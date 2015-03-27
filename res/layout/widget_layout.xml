@@ -27,7 +27,7 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:textColor="@android:color/white"
-			android:textSize="14sp"
+			android:textSize="14dp"
 			android:textStyle="bold" />
 	</FrameLayout>
 
@@ -37,6 +37,8 @@
 		android:layout_height="wrap_content"
 		android:background="@drawable/widget_title_background"
 		android:gravity="center"
+		android:lines="1"
+		android:maxLines="1"
 		android:text="@string/widgetTitle"
 		android:textColor="@android:color/white"
 		android:textSize="12sp" />

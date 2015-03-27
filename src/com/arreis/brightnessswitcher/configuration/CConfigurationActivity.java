@@ -8,8 +8,10 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -21,18 +23,24 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.arreis.brightnessswitcher.CWidgetProvider;
+import com.arreis.brightnessswitcher.CWidgetReceiver;
 import com.arreis.brightnessswitcher.R;
 import com.arreis.brightnessswitcher.datamodel.CBrightnessFileManager;
 
 public class CConfigurationActivity extends FragmentActivity
 {
 	private ListView mListView;
+	private CheckBox mShowTitleCheck;
 	private Button mAddLevelButton;
 	private Button mConfigFinishedButton;
 	
@@ -101,6 +109,22 @@ public class CConfigurationActivity extends FragmentActivity
 			}
 		});
 		
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		mShowTitleCheck = (CheckBox) findViewById(R.id.showTitle_check);
+		mShowTitleCheck.setOnCheckedChangeListener(new OnCheckedChangeListener()
+		{
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+			{
+				SharedPreferences.Editor edit = prefs.edit();
+				edit.putBoolean(CWidgetReceiver.PREFERENCES_SHOW_WIDGET_TITLE, isChecked);
+				edit.commit();
+				
+				updateWidget();
+			}
+		});
+		mShowTitleCheck.setChecked(prefs.getBoolean(CWidgetReceiver.PREFERENCES_SHOW_WIDGET_TITLE, true));
+		
 		mAddLevelButton = (Button) findViewById(R.id.addLevel_button);
 		mAddLevelButton.setOnClickListener(new OnClickListener()
 		{
@@ -160,10 +184,13 @@ public class CConfigurationActivity extends FragmentActivity
 		((CConfigurationListAdapter) mListView.getAdapter()).notifyDataSetChanged();
 	}
 	
-	@Override
-	public void onBackPressed()
+	private void updateWidget()
 	{
-		super.onBackPressed();
+		Intent intent = new Intent(CConfigurationActivity.this, CWidgetProvider.class);
+		intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+		int[] ids = { R.xml.widget_info };
+		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+		sendBroadcast(intent);
 	}
 	
 	private class CConfigurationListAdapter extends BaseAdapter
@@ -285,7 +312,7 @@ public class CConfigurationActivity extends FragmentActivity
 				@Override
 				public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
 				{
-					mLevelText.setText(String.format(getString(R.string.textLevelFormat), String.format(getString(R.string.percentLevelFormat), progress)));
+					mLevelText.setText(String.format(getString(R.string.textLevelFormat), String.format(getString(R.string.percentLevelFormat), progress + 1)));
 				}
 			});
 			
@@ -293,13 +320,13 @@ public class CConfigurationActivity extends FragmentActivity
 			
 			if (initialLevel == CBrightnessFileManager.BRIGHTNESS_LEVEL_AUTO)
 			{
-				mLevelSeekBar.setProgress(mLevelSeekBar.getMax() / 2);
+				mLevelSeekBar.setProgress(100 / 2);
 				mLevelText.setText(String.format(getString(R.string.textLevelFormat), getString(R.string.auto)));
 			}
 			else
 			{
-				final int levelPercent = (int) (mLevelSeekBar.getMax() * initialLevel);
-				mLevelSeekBar.setProgress(levelPercent);
+				final int levelPercent = (int) (100 * initialLevel);
+				mLevelSeekBar.setProgress(levelPercent - 1);
 				mLevelText.setText(String.format(getString(R.string.textLevelFormat), String.format(getString(R.string.percentLevelFormat), levelPercent)));
 			}
 			
@@ -316,7 +343,7 @@ public class CConfigurationActivity extends FragmentActivity
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					((CConfigurationActivity) getActivity()).doEditSelectedLevel((double) mLevelSeekBar.getProgress() / mLevelSeekBar.getMax());
+					((CConfigurationActivity) getActivity()).doEditSelectedLevel((double) (mLevelSeekBar.getProgress() + 1) / 100);
 				}
 			});
 			

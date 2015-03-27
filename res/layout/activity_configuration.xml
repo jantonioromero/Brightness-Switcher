@@ -19,9 +19,17 @@
 		android:id="@+id/listView"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_above="@+id/addLevel_button"
+		android:layout_above="@+id/showTitle_check"
 		android:layout_alignWithParentIfMissing="true"
 		android:layout_below="@+id/configurationTitle_text" />
+
+	<CheckBox
+		android:id="@+id/showTitle_check"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/addLevel_button"
+		android:layout_marginBottom="10dp"
+		android:text="@string/showTitleInWidget" />
 
 	<Button
 		android:id="@+id/addLevel_button"
