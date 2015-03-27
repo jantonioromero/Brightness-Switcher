@@ -105,7 +105,7 @@ public class CBrightnessFileManager
 	private static void loadDefaultLevels()
 	{
 		mBrightnessLevels = new Vector<Double>();
-		mBrightnessLevels.add(Double.valueOf(0.5));
-		mBrightnessLevels.add(Double.valueOf(0.0));
+		mBrightnessLevels.add(Double.valueOf(50.0 / 100));
+		mBrightnessLevels.add(Double.valueOf(1.0 / 100));
 	}
 }
